@@ -5,11 +5,28 @@ import { useState } from "react"
 function App(){
   const [currentColor,setCurrentColor] = useState("")
   const [activeButton,setActiveButton] = useState(Array(16 * 16).fill(false))
+  const [mouseDown,setMouseDown] = useState(false);
 
   const toggleColor = (index:number) =>{
       setActiveButton((prev) =>
         prev.map((state,i) => (i===index? !state:state))
       )
+  }
+
+  function checkMouseDown(i:any){
+    if(mouseDown === true){
+      toggleColor(i)
+    }
+  }
+
+  function makeMouseDown(i:any){
+    setMouseDown(true);
+    checkMouseDown(i);
+  }
+
+  function makeMouseUp(i:any){
+    setMouseDown(false);
+    checkMouseDown(i);
   }
 
   return(
@@ -23,7 +40,10 @@ function App(){
         </div>
         <div className="grid grid-cols-16 gap-x-0 w-100 h-30 mb-50 mr-20">
           {Array.from({length:16 * 16}).map((_,i) =>(
-            <button key={i} id={`${i}`} className={`border-2 w-6 h-6 mb-0 ${activeButton[i] ? currentColor : ""} `} onClick={() =>toggleColor(i)} onMouseOver={() =>toggleColor(i)}></button>
+            <button key={i} id={`${i}`} className={`border-2 w-6 h-6 mb-0 ${activeButton[i] ? currentColor : ""} `} 
+                                        onMouseDown={makeMouseDown}
+                                        onMouseOver={mouseDown == true? () =>toggleColor(i) : () =>{}}
+                                        onMouseUp={makeMouseUp}></button>
           ))}
         </div>
       </div>
