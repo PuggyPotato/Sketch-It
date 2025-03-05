@@ -4,12 +4,12 @@ import { useState } from "react"
 
 function App(){
   const [currentColor,setCurrentColor] = useState("")
-  const [activeButton,setActiveButton] = useState(Array(16 * 16).fill(false))
+  const [buttonColors,setButtonColors] = useState(Array(16 * 16).fill(false))
   const [mouseDown,setMouseDown] = useState(false);
 
   const toggleColor = (index:number) =>{
-      setActiveButton((prev) =>
-        prev.map((state,i) => (i===index? !state:state))
+      setButtonColors((prev) =>
+        prev.map((color,i) => (i===index? currentColor:color))
       )
   }
 
@@ -41,7 +41,7 @@ function App(){
         </div>
         <div className="grid grid-cols-16 gap-x-0 w-100 h-30 mb-50 mr-20">
           {Array.from({length:16 * 16}).map((_,i) =>(
-            <button key={i} id={`${i}`} className={`border-2 w-6 h-6 mb-0 ${activeButton[i] ? currentColor : ""} `} 
+            <button key={i} id={`${i}`} className={`border-2 w-6 h-6 mb-0 ${buttonColors[i]} `} 
                                         onMouseDown={() =>makeMouseDown(i)}
                                         onMouseOver={mouseDown ? () =>toggleColor(i) : undefined}
                                         onMouseUp={makeMouseUp}></button>
