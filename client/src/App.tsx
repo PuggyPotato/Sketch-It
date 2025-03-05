@@ -22,6 +22,7 @@ function App(){
   function makeMouseDown(i:any){
     setMouseDown(true);
     checkMouseDown(i);
+    toggleColor(i)
   }
 
   function makeMouseUp(i:any){
@@ -41,8 +42,8 @@ function App(){
         <div className="grid grid-cols-16 gap-x-0 w-100 h-30 mb-50 mr-20">
           {Array.from({length:16 * 16}).map((_,i) =>(
             <button key={i} id={`${i}`} className={`border-2 w-6 h-6 mb-0 ${activeButton[i] ? currentColor : ""} `} 
-                                        onMouseDown={makeMouseDown}
-                                        onMouseOver={mouseDown == true? () =>toggleColor(i) : () =>{}}
+                                        onMouseDown={() =>makeMouseDown(i)}
+                                        onMouseOver={mouseDown ? () =>toggleColor(i) : undefined}
                                         onMouseUp={makeMouseUp}></button>
           ))}
         </div>
