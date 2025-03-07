@@ -38,8 +38,8 @@ function App(){
     <>
       <PopUp/>
 
-      <div className="flex justify-center h-screen items-center z-12">
-        <h1 className="absolute top-5 text-3xl left-[660px]">Pixel Draw</h1>
+      <div className="flex justify-center h-screen items-center z-12 font-mono">
+        <h1 className="absolute top-3 text-4xl left-[670px]">Pixel Draw</h1>
         <div className="m-10 gap-3 absolute top-3 left-140">
           <button className=" border m-2 bg-red-600 p-4" onClick={() =>setCurrentColor("bg-red-600")}></button>
           <button className=" border m-2 bg-amber-600 p-4" onClick={() =>setCurrentColor("bg-amber-600")}></button>
