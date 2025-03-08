@@ -5,5 +5,5 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
-  base: "https://PuggyPotato.github.io/Sketch-It"
+  base: "/Sketch-It"
 })

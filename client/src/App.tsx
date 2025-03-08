@@ -5,7 +5,7 @@ import PopUp from "./PopUp";
 
 function App(){
   const [currentColor,setCurrentColor] = useState("")
-  const [buttonColors,setButtonColors] = useState(Array(25 * 25).fill(""))
+  const [buttonColors,setButtonColors] = useState(Array(64 * 64).fill(""))
   const [mouseDown,setMouseDown] = useState(false);
 
   const toggleColor = (index:number) =>{
@@ -49,9 +49,9 @@ function App(){
           <button className=" border m-2 bg-purple-600 p-4 " onClick={() =>setCurrentColor("bg-purple-600")}></button>
           
         </div>
-        <div className="grid grid-cols-23 gap-x-6 w-100 h-30 mb-90 mr-40">
-          {Array.from({length:23 * 23}).map((_,i) =>(
-            <button key={i} id={`${i}`} className={`border-2 w-6 h-6 mb-0 ${buttonColors[i]} `} 
+        <div className="grid grid-cols-64 gap-x-2 gap-0 w-100 h-30 mb-90 mr-30">
+          {Array.from({length:64 * 64}).map((_,i) =>(
+            <button key={i} id={`${i}`} className={`border-1 w-2 h-2 mb-0 ${buttonColors[i]} `} 
                                         onMouseDown={() =>makeMouseDown(i)}
                                         onMouseOver={mouseDown ? () =>toggleColor(i) : undefined}
                                         onMouseUp={makeMouseUp}></button>
